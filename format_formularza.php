@@ -29,8 +29,12 @@
                             </select>
                         </div>
                         <div class="text-field">
-                            <label class="form_label">Imię i nazwisko</label>
-                            <input type="text" class="form-text" name="personal_info" placeholder="np. Marcin Kowalski">
+                            <label class="form_label">Imię</label>
+                            <input type="text" class="form-text" name="personal_info" placeholder="np. Marcin">
+                        </div>
+                        <div class="text-field">
+                            <label class="form_label">Nazwisko</label>
+                            <input type="text" class="form-text" name="personal_info2" placeholder="np. Kowalski">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Stanowisko w pracy</label>
@@ -49,12 +53,12 @@
                             <input type="text" name="mail" class="form-text" placeholder="np. przyklad@gmail.com">
                         </div>
                         <div class="text-field">
-                            <label class="form_label">Nazwa Firmy</label>
-                            <input type="text" name="company_info" class="form-text" placeholder="np. Amazon">
-                        </div>
-                        <div class="text-field">
                             <label class="form_label">Adres strony firmy</label>
                             <input type="text" name="website" class="form-text" placeholder="np. google.com">
+                        </div>
+                        <div class="text-field">
+                            <label class="form_label">Nazwa Firmy</label>
+                            <input type="text" name="company_info" class="form-text" placeholder="np. Amazon">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Adres</label>
@@ -88,6 +92,7 @@
                     $template = file_get_contents("templates/$selected_template_with_extension");
                 
                     $name = isset($_GET["personal_info"]) ? $_GET["personal_info"] : "";
+                    $name2 = isset($_GET["personal_info2"]) ? $_GET["personal_info2"] : "";
                     $title = isset($_GET["title"]) ? $_GET["title"] : "";
                     $title2 = isset($_GET["title2"]) ? $_GET["title2"] : "";
                     $number = isset($_GET["phone_number"]) ? $_GET["phone_number"] : "";
@@ -101,15 +106,16 @@
                 
 
                     $signature = str_replace(
-                        ['{IMIE}', '{STANOWISKO}', '{TYTUL}', '{NUMER}', '{MAIL}', '{FIRMA}', '{STRONA}', '{ADRES}', '{ADRES2}', '{MAIL_FIRMA}', '{NUMER_FIRMA}'],
-                        [$name, $title, $title2, $number, $mail, $company_info, $site_address, $address, $address2, $office_number, $office_mail],
+                        ['{IMIE}', '{NAZWISKO}', '{STANOWISKO}', '{TYTUL}', '{NUMER}', '{MAIL}', '{FIRMA}', '{STRONA}', '{ADRES}', '{ADRES2}', '{NUMER_FIRMA}', '{MAIL_FIRMA}'],
+                        [$name, $name2, $title, $title2, $number, $mail, $company_info, $site_address, $address, $address2, $office_number, $office_mail],
                         $template
                     );
 
-                    echo $signature;
+                
+                    echo "<div class='template_background'>$signature</div>";
             }
             else {
-                echo "nie ma";
+                echo "Template not available in files";
             }
             }
             ?>

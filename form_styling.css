@@ -1,5 +1,7 @@
 body {
-    background-color: #d2d4da;
+    background-color: #bdd4e7;
+    background-image: linear-gradient(315deg, #bdd4e7 0%, #8693ab 74%);
+
 }
 .row {
     display: flex;
@@ -17,7 +19,6 @@ body {
     background-color: #F3f4f8;
 }
 .column-full {
-    margin-bottom: 1.5rem;
     background-clip: padding-box;
     background-color: #ffffff;
     box-shadow: 0 0.25rem 1.25rem rgba(75, 70, 92, .1);
@@ -102,4 +103,12 @@ input {
     transition: 0.7s;
     background-color: rgb(26, 156, 207);
     border-color: rgb(26, 156, 207);
+}
+.template_background {
+    background: #F3f4f8;
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    padding: 20px 20px 20px 0;
+    border-radius: 0.3rem;
 }
