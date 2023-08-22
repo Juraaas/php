@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Generator Stopek E-mail</title>
-    <meta name="description" content="">
+    <meta name="description" content="Generator Stopek E-mail">
     <link rel="stylesheet" href="form_styling.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
                     <h5 class="form_head">Generator stopek mailowych</h5> 
                 </div>
                 <div class="form-body">
-                    <form method="get" action="format_formularza.php" target="_blank">
+                    <form method="get" action="">
                         <div class="text_field">
                             <label class="form_label">Wybór wzoru</label>
                             <select name="selected_template" class="form-text form-select">
@@ -87,17 +87,17 @@
 
                     $template = file_get_contents("templates/$selected_template_with_extension");
                 
-                    $name = $_GET["personal_info"];
-                    $title = $_GET["title"];
-                    $title2 = $_GET["title2"];
-                    $number = $_GET["phone_number"];
-                    $mail = $_GET["mail"];
-                    $company_info = $_GET["company_info"];
-                    $site_address = $_GET["website"];
-                    $address = $_GET["address"];
-                    $address2 = $_GET["address_line2"];
-                    $office_number = $_GET["office_number"];
-                    $office_mail = $_GET["office_mail"];
+                    $name = isset($_GET["personal_info"]) ? $_GET["personal_info"] : "";
+                    $title = isset($_GET["title"]) ? $_GET["title"] : "";
+                    $title2 = isset($_GET["title2"]) ? $_GET["title2"] : "";
+                    $number = isset($_GET["phone_number"]) ? $_GET["phone_number"] : "";
+                    $mail = isset($_GET["mail"]) ? $_GET["mail"] : "";
+                    $company_info = isset($_GET["company_info"]) ? $_GET["company_info"] : "";
+                    $site_address = isset($_GET["website"]) ? $_GET["website"] : "";
+                    $address = isset($_GET["address"]) ? $_GET["address"] : "";
+                    $address2 = isset($_GET["address_line2"]) ? $_GET["address_line2"] : "";
+                    $office_number = isset($_GET["office_number"]) ? $_GET["office_number"] : "";
+                    $office_mail = isset($_GET["office_mail"]) ? $_GET["office_mail"] : "";
                 
 
                     $signature = str_replace(
