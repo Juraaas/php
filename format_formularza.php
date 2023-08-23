@@ -30,53 +30,56 @@
                         </div>
                         <div class="text-field">
                             <label class="form_label">Imię</label>
-                            <input type="text" class="form-text" name="personal_info" placeholder="np. Marcin">
+                            <input type="text" class="form-text" name="personal_info" value="<?= isset($_GET["personal_info"]) ? $_GET["personal_info"] : ""; ?>" placeholder="np. Marcin">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Nazwisko</label>
-                            <input type="text" class="form-text" name="personal_info2" placeholder="np. Kowalski">
+                            <input type="text" class="form-text" name="personal_info2" value="<?= isset($_GET["personal_info2"]) ? $_GET["personal_info2"] : "";?>" placeholder="np. Kowalski">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Stanowisko w pracy</label>
-                            <input type="text" name="title" class="form-text" placeholder="np. Prezes">
+                            <input type="text" name="title" class="form-text" value="<?= isset($_GET["title"]) ? $_GET["title"] : ""; ?>" placeholder="np. Prezes">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Tytuł</label>
-                            <input type="text" name="title2" class="form-text" placeholder="np. Asystent Managera">
+                            <input type="text" name="title2" class="form-text" value="<?= isset($_GET["title2"]) ? $_GET["title2"] : ""; ?>" placeholder="np. Asystent Managera">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Numer telefonu</label>
-                            <input type="text" name="phone_number" class="form-text" placeholder="np. +48 600 233 123">
+                            <input type="text" name="phone_number" class="form-text" value="<?= isset($_GET["phone_number"]) ? $_GET["phone_number"] : ""; ?>" placeholder="np. +48 600 233 123">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Adres E-mail</label>
-                            <input type="text" name="mail" class="form-text" placeholder="np. przyklad@gmail.com">
+                            <input type="text" name="mail" class="form-text" value="<?= isset($_GET["mail"]) ? $_GET["mail"] : ""; ?>" placeholder="np. przyklad@gmail.com">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Adres strony firmy</label>
-                            <input type="text" name="website" class="form-text" placeholder="np. google.com">
+                            <input type="text" name="website" class="form-text" value="<?= isset($_GET["website"]) ? $_GET["website"] : ""; ?>" placeholder="np. google.com">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Nazwa Firmy</label>
-                            <input type="text" name="company_info" class="form-text" placeholder="np. Amazon">
+                            <input type="text" name="company_info" class="form-text" value="<?= isset($_GET["company_info"]) ? $_GET["company_info"] : ""; ?>" placeholder="np. Amazon">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Adres</label>
-                            <input type="text" name="address" class="form-text" placeholder="np. Jana Pawła 2 13">
+                            <input type="text" name="address" class="form-text" value="<?= isset($_GET["address"]) ? $_GET["address"] : ""; ?>" placeholder="np. Jana Pawła 2 13">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Adres linia 2</label>
-                            <input type="text" name="address_line2" class="form-text" placeholder="np. 13 10-682">
+                            <input type="text" name="address_line2" class="form-text" value="<?= isset($_GET["address_line2"]) ? $_GET["address_line2"] : ""; ?>" placeholder="np. 13 10-682">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Numer biurowy</label>
-                            <input type="text" name="office_number" class="form-text" placeholder="np. +48 600 233 123">
+                            <input type="text" name="office_number" class="form-text" value="<?= isset($_GET["office_number"]) ? $_GET["office_number"] : ""; ?>" placeholder="np. +48 600 233 123">
                         </div>
                         <div class="text-field">
                             <label class="form_label">E-mail biurowy</label>
-                            <input type="text" name="office_mail" class="form-text" placeholder="np. biuro@gmail.com">
-                        </div>    
-                        <input type="submit" class="btn" name="send" value="Generuj">
+                            <input type="text" name="office_mail" class="form-text" value="<?= isset($_GET["office_mail"]) ? $_GET["office_mail"] : ""; ?>" placeholder="np. biuro@gmail.com">
+                        </div>
+                        <div class="buttons_align">  
+                            <input type="submit" class="btn" name="send" value="Generuj">
+                            <a href="http://localhost/temp/format_formularza.php"><input type="submit" class="btn_clear" name="clear" value="Wyczyść"></a>
+                        </div> 
                     </form>
                 </div>  
             </div>
