@@ -14,7 +14,7 @@
         .row {
             display: flex;
             flex-wrap: wrap;
-            margin-top: 10px;
+            margin-top: 20px;
             margin-left: 20px;
             margin-right: 20px;
             gap: 100px;
@@ -51,9 +51,12 @@
             font-size: 1.5rem;
             margin-top: 0;
             margin-bottom: 1px;
-            font-weight: 500;
+            font-weight: 700;
             line-height: 1.3;
             display: block;
+        }
+        .form_head {
+            color: #004F9E;
         }
         .text-field {
             margin-bottom: 1rem;
@@ -175,15 +178,40 @@
         .fs_13 {
             font-size: 13px;
         }
-        @media screen and (max-width: 600px) {
+        .result_head {
+            color: #318CE7;
+        }
+        @media screen and (max-width: 1280px) {
         .row {
-            flex-direction: column; /* Kolumny zostaną ułożone jeden pod drugim */
-            margin: 10px 0; /* Odstępy na urządzeniach mobilnych */
+            flex-direction: column;
+            flex-wrap: nowrap;
+            margin: 10px 0;
         }
 
         .column {
             width: 100%;
-            margin: 10px 0; /* Odstępy na urządzeniach mobilnych */
+            margin: 10px 0;
+        }
+        .text-field {
+            margin: 0;
+            padding: 4px;
+        }
+        .template-_background {
+            width: 100%;
+        }
+        .btn {
+            width: 40%;
+            margin-right: 20px;
+            margin-left: 5px;
+        }
+        .btn_clear {
+            width: 40%;
+        }
+        .template_background {
+            width: 100%;
+        }
+        .form-select {
+            width: 95%;
         }
 }
     </style>
@@ -291,6 +319,7 @@
                 );
                 $email_content = "
                         <div class='email_content'>
+                            <h5 class='result_head'>Wygenerowana Stopka</h5>
                             <p class='email_lorem fs_13'>Temat Maila</p>
                             <hr class='separator_imit'>
                             <p class='email_lorem'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lacinia augue a ligula ultricies, at faucibus quam volutpat.<br>--</p>
@@ -329,6 +358,7 @@
                     );
                     $email_content = "
                         <div class='email_content'>
+                            <h5 class='result_head'>Wygenerowana Stopka</h5>
                             <p class='email_lorem fs_13'>Temat Maila</p>
                             <hr class='separator_imit'>
                             <p class='email_lorem'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lacinia augue a ligula ultricies, at faucibus quam volutpat.</p>
