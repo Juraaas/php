@@ -142,8 +142,27 @@
         .btn_clear:hover {
             transition: 0.7s;
             background-color: rgb(56, 68, 73);
-            border-color: r
-            rgb(56, 68, 73);
+            border-color: rgb(56, 68, 73);
+        }
+        .btn_copy {
+            cursor: pointer;
+            letter-spacing: .5px;
+            padding: 0.3rem 0.6rem;
+            font-size: 1rem;
+            line-height: 1.2rem;
+            border-width: 1px;
+            border-radius: 0.4rem;
+            color: white;
+            background-color: rgb(9, 121, 105);
+            border-color: rgb(9, 121, 105);
+            display: inline-block;
+            float: right;
+            margin-right: 30px;
+        }
+        .btn_copy:hover {
+            border-color: rgb(64, 130, 109);
+            background-color: rgb(64, 130, 109);
+            transition: 0.7s;
         }
         .buttons_align {
             margin-top: 10px;
@@ -178,9 +197,6 @@
         .fs_13 {
             font-size: 13px;
         }
-        .result_head {
-            color: #318CE7;
-        }
         @media screen and (max-width: 1280px) {
         .row {
             flex-direction: column;
@@ -193,19 +209,22 @@
             margin: 10px 0;
         }
         .text-field {
-            margin: 0;
-            padding: 4px;
+            width: 90%;
         }
         .template-_background {
             width: 100%;
         }
         .btn {
-            width: 40%;
+            width: 25%;
             margin-right: 20px;
             margin-left: 5px;
         }
         .btn_clear {
-            width: 40%;
+            width: 25%;
+        }
+        .btn_copy {
+            width: 25%;
+            margin-right: 75px;
         }
         .template_background {
             width: 100%;
@@ -219,6 +238,28 @@
 <body>
 <?php
     $available_templates = glob("templates/*.html");
+
+    $default_name = "Piotr";
+    $default_name2 = "Christyniuk";
+    $default_title = "Wiceprezes Zarządu";
+    $default_title2 = "Asystent Laboratoryjny";
+    $default_number = "+48 601 830 640";
+    $default_mail = "p.christyniuk@purecln.com";
+    $default_company_info = "Pure Clinical Lab Network Sp. z o. o.";
+    $default_site_address = "www.purecln.com";
+    $default_address = "ul. Maurycego Mochnackiego";
+    $default_address2 = "276-200 Słupsk";
+    $default_office_number = "511-872-299";
+    $default_office_mail = "biuro@purecln.com";
+
+    $email_content = "
+        <div class='email_content'>
+            <h5 class='form_head'>Wygenerowana Stopka</h5>
+            <p class='email_lorem fs_13'>Temat Maila</p>
+            <hr class='separator_imit'>
+            <p class='email_lorem'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lacinia augue a ligula ultricies, at faucibus quam volutpat.<br>--</p>
+        </div>
+    ";
 ?>
     <div class="row">
         <div class="column">
@@ -241,55 +282,56 @@
                         </div>
                         <div class="text-field">
                             <label class="form_label">Imię</label>
-                            <input type="text" class="form-text" name="personal_info" value="<?= isset($_GET["personal_info"]) ? $_GET["personal_info"] : ""; ?>" placeholder="np. Marcin">
+                            <input type="text" class="form-text" name="personal_info" value="<?= (isset($_GET["personal_info"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["personal_info"]) : $default_name; ?>" placeholder="np. Marcin">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Nazwisko</label>
-                            <input type="text" class="form-text" name="personal_info2" value="<?= isset($_GET["personal_info2"]) ? $_GET["personal_info2"] : "";?>" placeholder="np. Kowalski">
+                            <input type="text" class="form-text" name="personal_info2" value="<?= (isset($_GET["personal_info2"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["personal_info2"]) : $default_name2;?>" placeholder="np. Kowalski">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Stanowisko</label>
-                            <input type="text" name="title" class="form-text" value="<?= isset($_GET["title"]) ? $_GET["title"] : ""; ?>" placeholder="np. Prezes">
+                            <input type="text" name="title" class="form-text" value="<?= (isset($_GET["title"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["title"]) : $default_title; ?>" placeholder="np. Prezes">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Tytuł</label>
-                            <input type="text" name="title2" class="form-text" value="<?= isset($_GET["title2"]) ? $_GET["title2"] : ""; ?>" placeholder="np. Asystent Managera">
+                            <input type="text" name="title2" class="form-text" value="<?= (isset($_GET["title2"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["title2"]) : $default_title2; ?>" placeholder="np. Asystent Managera">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Numer telefonu</label>
-                            <input type="text" name="phone_number" class="form-text" value="<?= isset($_GET["phone_number"]) ? $_GET["phone_number"] : ""; ?>" placeholder="np. +48 600 233 123">
+                            <input type="text" name="phone_number" class="form-text" value="<?= (isset($_GET["phone_number"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["phone_number"]) : $default_number; ?>" placeholder="np. +48 600 233 123">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Adres E-mail</label>
-                            <input type="text" name="mail" class="form-text" value="<?= isset($_GET["mail"]) ? $_GET["mail"] : ""; ?>" placeholder="np. przyklad@gmail.com">
+                            <input type="text" name="mail" class="form-text" value="<?= (isset($_GET["mail"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["mail"]) : $default_mail; ?>" placeholder="np. przyklad@gmail.com">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Adres strony firmy</label>
-                            <input type="text" name="website" class="form-text" value="<?= isset($_GET["website"]) ? $_GET["website"] : ""; ?>" placeholder="np. google.com">
+                            <input type="text" name="website" class="form-text" value="<?= (isset($_GET["website"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["website"]) : $default_site_address; ?>" placeholder="np. google.com">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Nazwa Firmy</label>
-                            <input type="text" name="company_info" class="form-text" value="<?= isset($_GET["company_info"]) ? $_GET["company_info"] : ""; ?>" placeholder="np. Amazon">
+                            <input type="text" name="company_info" class="form-text" value="<?= (isset($_GET["company_info"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["company_info"]) : $default_company_info; ?>" placeholder="np. Amazon">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Adres</label>
-                            <input type="text" name="address" class="form-text" value="<?= isset($_GET["address"]) ? $_GET["address"] : ""; ?>" placeholder="np. Jana Pawła 2 13">
+                            <input type="text" name="address" class="form-text" value="<?= (isset($_GET["address"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["address"]) : $default_address; ?>" placeholder="np. Jana Pawła 2 13">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Adres linia 2</label>
-                            <input type="text" name="address_line2" class="form-text" value="<?= isset($_GET["address_line2"]) ? $_GET["address_line2"] : ""; ?>" placeholder="np. 13 10-682">
+                            <input type="text" name="address_line2" class="form-text" value="<?= (isset($_GET["address_line2"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["address_line2"]) : $default_address2; ?>" placeholder="np. 13 10-682">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Numer biurowy</label>
-                            <input type="text" name="office_number" class="form-text" value="<?= isset($_GET["office_number"]) ? $_GET["office_number"] : ""; ?>" placeholder="np. +48 600 233 123">
+                            <input type="text" name="office_number" class="form-text" value="<?= (isset($_GET["office_number"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["office_number"]) : $default_office_number; ?>" placeholder="np. +48 600 233 123">
                         </div>
                         <div class="text-field">
                             <label class="form_label">E-mail biurowy</label>
-                            <input type="text" name="office_mail" class="form-text" value="<?= isset($_GET["office_mail"]) ? $_GET["office_mail"] : ""; ?>" placeholder="np. biuro@gmail.com">
+                            <input type="text" name="office_mail" class="form-text" value="<?= (isset($_GET["office_mail"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["office_mail"]) : $default_office_mail; ?>" placeholder="np. biuro@gmail.com">
                         </div>
                         <div class="buttons_align">  
                             <input type="submit" class="btn" name="send" value="Generuj">
                             <a href="/temp/index.php"><input type="button" class="btn_clear" name="clear" value="Wyczyść"></a>
+                            <button id="btn-copy" class="btn_copy">Kopiuj do schowka</button>
                         </div> 
                     </form>
                 </div>  
@@ -297,36 +339,16 @@
         </div>
             <?php
             if (!isset($_GET["send"])) {
-                $name = "Piotr";
-                $name2 = "Christyniuk";
-                $title = "Wiceprezes Zarządu";
-                $title2 = "Asystent Laboratoryjny";
-                $number = "+48 601 830 640";
-                $mail = "p.christyniuk@purecln.com";
-                $company_info = "Pure Clinical Lab Network Sp. z o. o.";
-                $site_address = "www.purecln.com";
-                $address = "ul. Maurycego Mochnackiego";
-                $address2 = "276-200 Słupsk";
-                $office_number = "511-872-299";
-                $office_mail = "biuro@purecln.com";
                 
                 $template = file_get_contents("templates/Pure_clinical_Lab.html");
                 
                 $signature = str_replace(
                     ['{IMIE}', '{NAZWISKO}', '{STANOWISKO}', '{TYTUL}', '{NUMER}', '{MAIL}', '{FIRMA}', '{STRONA}', '{ADRES}', '{ADRES2}', '{NUMER_FIRMA}', '{MAIL_FIRMA}'],
-                    [$name, $name2, $title, $title2, $number, $mail, $company_info, $site_address, $address, $address2, $office_number, $office_mail],
+                    [$default_name, $default_name2, $default_title, $default_title2, $default_number, $default_mail, $default_company_info, $default_site_address, $default_address, $default_address2, $default_office_number, $default_office_mail],
                     $template
                 );
-                $email_content = "
-                        <div class='email_content'>
-                            <h5 class='result_head'>Wygenerowana Stopka</h5>
-                            <p class='email_lorem fs_13'>Temat Maila</p>
-                            <hr class='separator_imit'>
-                            <p class='email_lorem'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lacinia augue a ligula ultricies, at faucibus quam volutpat.<br>--</p>
-                        </div>
-                    ";
-    
-                echo "<div class='template_background'>$email_content$signature</div>";
+                $signature_box = "<div class='signature_container'>$signature</div>";
+                echo "<div class='template_background'>$email_content$signature_box</div>";
             }
             elseif(isset($_GET["send"])) {
                 $selected_template = $_GET["selected_template"];
@@ -356,17 +378,8 @@
                         [$name, $name2, $title, $title2, $number, $mail, $company_info, $site_address, $address, $address2, $office_number, $office_mail],
                         $template
                     );
-                    $email_content = "
-                        <div class='email_content'>
-                            <h5 class='result_head'>Wygenerowana Stopka</h5>
-                            <p class='email_lorem fs_13'>Temat Maila</p>
-                            <hr class='separator_imit'>
-                            <p class='email_lorem'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lacinia augue a ligula ultricies, at faucibus quam volutpat.</p>
-                        </div>
-                    ";
-
-                
-                    echo "<div class='template_background'>$email_content$signature</div>";
+                    $signature_box = "<div class='signature_container'>$signature</div>";
+                    echo "<div class='template_background'>$email_content$signature_box</div>";
             }
             else {
                 echo "Template not available in files";
@@ -374,5 +387,25 @@
             }
             ?>
     </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var copyButton = document.getElementById("btn-copy");
+        copyButton.addEventListener("click", function() {
+            var signature_content = document.querySelector(".signature_container");
+            var range = document.createRange();
+            range.selectNode(signature_content);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            
+            try {
+                document.execCommand("copy");
+                alert("Treść skopiowana do schowka!");
+            } catch (err) {
+                console.error("Błąd podczas kopiowania: ", err);
+            }
+            window.getSelection().removeAllRanges();
+        });
+    });
+    </script>
 </body>
 </html>
