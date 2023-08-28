@@ -158,6 +158,7 @@
             display: inline-block;
             float: right;
             margin-right: 30px;
+            width: 20%;
         }
         .btn_copy:hover {
             border-color: rgb(64, 130, 109);
@@ -203,7 +204,6 @@
             flex-wrap: nowrap;
             margin: 10px 0;
         }
-
         .column {
             width: 100%;
             margin: 10px 0;
@@ -215,16 +215,16 @@
             width: 100%;
         }
         .btn {
-            width: 25%;
-            margin-right: 20px;
+            width: 30%;
+            margin-right: 10px;
             margin-left: 5px;
         }
         .btn_clear {
-            width: 25%;
+            width: 30%;
         }
         .btn_copy {
-            width: 25%;
-            margin-right: 75px;
+            width: 30%;
+            margin-right: 0;
         }
         .template_background {
             width: 100%;
@@ -237,7 +237,7 @@
 </head>
 <body>
 <?php
-    $available_templates = glob("templates/*.html");
+    $available_templates = glob("templates/*.php");
 
     $default_name = "Piotr";
     $default_name2 = "Christyniuk";
@@ -251,7 +251,6 @@
     $default_address2 = "276-200 Słupsk";
     $default_office_number = "511-872-299";
     $default_office_mail = "biuro@purecln.com";
-
     $email_content = "
         <div class='email_content'>
             <h5 class='form_head'>Wygenerowana Stopka</h5>
@@ -274,7 +273,7 @@
                             <select name="selected_template" class="form-text form-select">
                                 <?php
                                     foreach ($available_templates as $template_path) {
-                                                $template_name = basename($template_path, ".html");
+                                                $template_name = basename($template_path, ".php");
                                                 echo "<option value='$template_name'>$template_name</option>";
                                             }
                                 ?>
@@ -282,78 +281,90 @@
                         </div>
                         <div class="text-field">
                             <label class="form_label">Imię</label>
-                            <input type="text" class="form-text" name="personal_info" value="<?= (isset($_GET["personal_info"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["personal_info"]) : $default_name; ?>" placeholder="np. Marcin">
+                            <input type="text" class="form-text" name="personal_info" value="<?= isset($_GET['personal_info']) ? $_GET['personal_info'] : (isset($_GET['clear']) ? "" : $default_name); ?>" placeholder="np. Marcin">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Nazwisko</label>
-                            <input type="text" class="form-text" name="personal_info2" value="<?= (isset($_GET["personal_info2"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["personal_info2"]) : $default_name2;?>" placeholder="np. Kowalski">
+                            <input type="text" class="form-text" name="personal_info2" value="<?= isset($_GET['personal_info2']) ? $_GET['personal_info2'] : (isset($_GET['clear']) ? "" : $default_name2); ?>" placeholder="np. Kowalski">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Stanowisko</label>
-                            <input type="text" name="title" class="form-text" value="<?= (isset($_GET["title"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["title"]) : $default_title; ?>" placeholder="np. Prezes">
+                            <input type="text" name="title" class="form-text" value="<?= isset($_GET['title']) ? $_GET['title'] : (isset($_GET['clear']) ? "" : $default_title); ?>" placeholder="np. Prezes">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Tytuł</label>
-                            <input type="text" name="title2" class="form-text" value="<?= (isset($_GET["title2"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["title2"]) : $default_title2; ?>" placeholder="np. Asystent Managera">
+                            <input type="text" name="title2" class="form-text" value="<?= isset($_GET['title2']) ? $_GET['title2'] : (isset($_GET['clear']) ? "" : $default_title2);  ?>" placeholder="np. Asystent Managera">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Numer telefonu</label>
-                            <input type="text" name="phone_number" class="form-text" value="<?= (isset($_GET["phone_number"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["phone_number"]) : $default_number; ?>" placeholder="np. +48 600 233 123">
+                            <input type="text" name="phone_number" class="form-text" value="<?= isset($_GET['phone_number']) ? $_GET['phone_number'] : (isset($_GET['clear']) ? "" : $default_number); ?>" placeholder="np. +48 600 233 123">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Adres E-mail</label>
-                            <input type="text" name="mail" class="form-text" value="<?= (isset($_GET["mail"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["mail"]) : $default_mail; ?>" placeholder="np. przyklad@gmail.com">
+                            <input type="text" name="mail" class="form-text" value="<?= isset($_GET['mail']) ? $_GET['mail'] : (isset($_GET['clear']) ? "" : $default_mail); ?>" placeholder="np. przyklad@gmail.com">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Adres strony firmy</label>
-                            <input type="text" name="website" class="form-text" value="<?= (isset($_GET["website"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["website"]) : $default_site_address; ?>" placeholder="np. google.com">
+                            <input type="text" name="website" class="form-text" value="<?= isset($_GET['website']) ? $_GET['website'] : (isset($_GET['clear']) ? "" : $default_site_address); ?>" placeholder="np. google.com">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Nazwa Firmy</label>
-                            <input type="text" name="company_info" class="form-text" value="<?= (isset($_GET["company_info"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["company_info"]) : $default_company_info; ?>" placeholder="np. Amazon">
+                            <input type="text" name="company_info" class="form-text" value="<?= isset($_GET['company_info']) ? $_GET['company_info'] : (isset($_GET['clear']) ? "" : $default_company_info); ?>" placeholder="np. Amazon">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Adres</label>
-                            <input type="text" name="address" class="form-text" value="<?= (isset($_GET["address"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["address"]) : $default_address; ?>" placeholder="np. Jana Pawła 2 13">
+                            <input type="text" name="address" class="form-text" value="<?= isset($_GET['address']) ? $_GET['address'] : (isset($_GET['clear']) ? "" : $default_address);?>" placeholder="np. Jana Pawła 2 13">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Adres linia 2</label>
-                            <input type="text" name="address_line2" class="form-text" value="<?= (isset($_GET["address_line2"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["address_line2"]) : $default_address2; ?>" placeholder="np. 13 10-682">
+                            <input type="text" name="address_line2" class="form-text" value="<?= isset($_GET['address_line2']) ? $_GET['address_line2'] : (isset($_GET['clear']) ? "" : $default_address2); ?>" placeholder="np. 13 10-682">
                         </div>
                         <div class="text-field">
                             <label class="form_label">Numer biurowy</label>
-                            <input type="text" name="office_number" class="form-text" value="<?= (isset($_GET["office_number"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["office_number"]) : $default_office_number; ?>" placeholder="np. +48 600 233 123">
+                            <input type="text" name="office_number" class="form-text" value="<?= isset($_GET['office_number']) ? $_GET['office_number'] : (isset($_GET['clear']) ? "" : $default_office_number); ?>" placeholder="np. +48 600 233 123">
                         </div>
                         <div class="text-field">
                             <label class="form_label">E-mail biurowy</label>
-                            <input type="text" name="office_mail" class="form-text" value="<?= (isset($_GET["office_mail"]) && !isset($_GET["send"])) ? htmlspecialchars($_GET["office_mail"]) : $default_office_mail; ?>" placeholder="np. biuro@gmail.com">
+                            <input type="text" name="office_mail" class="form-text" value="<?= isset($_GET['office_mail']) ? $_GET['office_mail'] : (isset($_GET['clear']) ? "" : $default_office_mail); ?>" placeholder="np. biuro@gmail.com">
                         </div>
                         <div class="buttons_align">  
                             <input type="submit" class="btn" name="send" value="Generuj">
-                            <a href="/temp/index.php"><input type="button" class="btn_clear" name="clear" value="Wyczyść"></a>
-                            <button id="btn-copy" class="btn_copy">Kopiuj do schowka</button>
+                            <a href="/generator-stopki/index.php?clear=1"><input type="button" class="btn_clear" name="clear" value="Wyczyść"></a>
+                            <button id="btn-copy" class="btn_copy">Kopiuj</button>
                         </div> 
                     </form>
                 </div>  
             </div>
         </div>
             <?php
-            if (!isset($_GET["send"])) {
-                
-                $template = file_get_contents("templates/Pure_clinical_Lab.html");
+            if (!isset($_GET["send"])) {         
+                $template = file_get_contents("templates/Pure_clinical_Lab.php");
+
+                $name = "Piotr";
+                $name2 = "Christyniuk";
+                $title = "Wiceprezes Zarządu";
+                $title2 = "Asystent Laboratoryjny";
+                $number = "+48 601 830 640";
+                $mail = "p.christyniuk@purecln.com";
+                $company_info = "Pure Clinical Lab Network Sp. z o. o.";
+                $site_address = "www.purecln.com";
+                $address = "ul. Maurycego Mochnackiego";
+                $address2 = "276-200 Słupsk";
+                $office_number = "511-872-299";
+                $office_mail = "biuro@purecln.com";
                 
                 $signature = str_replace(
                     ['{IMIE}', '{NAZWISKO}', '{STANOWISKO}', '{TYTUL}', '{NUMER}', '{MAIL}', '{FIRMA}', '{STRONA}', '{ADRES}', '{ADRES2}', '{NUMER_FIRMA}', '{MAIL_FIRMA}'],
-                    [$default_name, $default_name2, $default_title, $default_title2, $default_number, $default_mail, $default_company_info, $default_site_address, $default_address, $default_address2, $default_office_number, $default_office_mail],
+                    [$name, $name2, $title, $title2, $number, $mail, $company_info, $site_address, $address, $address2, $office_number, $office_mail],
                     $template
                 );
                 $signature_box = "<div class='signature_container'>$signature</div>";
                 echo "<div class='template_background'>$email_content$signature_box</div>";
             }
-            elseif(isset($_GET["send"])) {
+            if(isset($_GET["send"])) {
                 $selected_template = $_GET["selected_template"];
 
-                $selected_template_with_extension = "$selected_template.html";
+                $selected_template_with_extension = "$selected_template.php";
 
                 if(in_array("templates/$selected_template_with_extension", $available_templates)){
 
