@@ -232,6 +232,19 @@
         .form-select {
             width: 95%;
         }
+        @media screen and (max-width: 500px) {
+        .buttons_align {
+            display: flex;
+            justify-content: start;
+            align-items: inherit;
+        }
+        .btn-clear {
+            display: contents;
+        }
+        .btn-copy { 
+            margin-left: 10px;
+        }
+        }
 }
     </style>
 </head>

@@ -1,4 +1,4 @@
-<div class="card" style="margin-left: 25px; background-color: #FFF; font-family: 'Arial'; ">
+<div class="card" style="margin-left: 25px; background-color: #FFF; font-family: 'Arial'; overflow: hidden;">
     <div class="card_head">
       <h2 class="name" style="width: 200px; height: 10px; display: inline-block; font-style: normal; font-weight: 700; font-size: 18px; line-height: 11px; margin-bottom: 4px; text-align: left; color: #004F9E">
         {IMIE} <span style="color: #37A7DF">{NAZWISKO}</span>
