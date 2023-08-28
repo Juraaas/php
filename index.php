@@ -330,7 +330,7 @@
                         <div class="buttons_align">  
                             <input type="submit" class="btn" name="send" value="Generuj">
                             <a href="/generator-stopki/index.php?clear=1"><input type="button" class="btn_clear" name="clear" value="Wyczyść"></a>
-                            <button id="btn-copy" class="btn_copy">Kopiuj</button>
+                            <button id="btn-copy" class="btn_copy">Kopiuj stopkę</button>
                         </div> 
                     </form>
                 </div>  
