@@ -19,7 +19,7 @@
         </p>
       </div>
     </div>
-    <hr class="separator" style="margin-left: 0px; color: #004F9E; border: 0.4px solid #004F9E; flex-shrink: 0;">
+    <hr class="separator" style="margin-left: 0px; color: #004F9E; border: 0.4px solid #004F9E; flex-shrink: 0; width: 446px;">
     <div class="card_body" style="margin-top: 16px; align-items: center; display: flex; flex-direction: row; background-color: #FFF;">
       <div class="data" style="display: block; margin-right: 18px;">
         <div class="card_lower_section" style="margin-bottom: 8px;">
