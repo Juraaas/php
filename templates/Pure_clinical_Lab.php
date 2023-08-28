@@ -33,7 +33,7 @@
             <a href="" target="_blank"><img class="social_media" style="margin-right: 6.88px;" src="https://purecln.com/wp-content/uploads/2023/08/Group-30.png"></a>
           </div>
           <p class="card_number fs_11" style="display: flex; align-items: center; font-style: normal; font-weight: 700; font-size: 18px; line-height: 11px; margin-bottom: 0px; margin-top: 0px; text-align: left; gap: 8px; font-size: 11px; text-decoration: none; padding: auto; color: #004F9E">
-            <a href="http://www.purecln.com" target="_blank" style="text-decoration: none; color: #FFF; border-bottom: none;"><span style="color: #004F9E">{MAIL}</span></a>
+            <a href="http://www.purecln.com" target="_blank" style="text-decoration: none; color: #FFF; border-bottom: none;"><span style="color: #004F9E">{STRONA}</span></a>
           </p>
         </div>
       </div>
@@ -41,8 +41,8 @@
         <p class="company_info" style="font-style: normal; font-weight: 400; font-size: 11px; margin-top: 0px; color: #004F9E; margin-bottom: 27px;">
           <b>{FIRMA}</b><br>{ADRES}<br>{ADRES2}
         </p>
-        <p class="company_info" style="font-style: normal; font-weight: 400; font-size: 11px; text-decoration: none; margin-top: 0px; color: #004F9E; margin-bottom: 0px;">
-            <b>T: </b>{NUMER_FIRMA}<br> <b>E: </b><a href="mailto:{MAIL_FIRMA}" target="_blank" style="text-decoration: none !important; color: #FFF; border-bottom: none;"><span style="color: #004F9E;">{MAIL_FIRMA}</span></a>
+        <p class="company_info" style="font-style: normal; font-weight: 400; font-size: 11px; margin-top: 0px; color: #004F9E; margin-bottom: 0px;">
+            <b>T: </b>{NUMER_FIRMA}<br> <b>E: </b><a href="mailto:{MAIL_FIRMA}" target="_blank" style="text-decoration:none !important; color: #FFF; border-bottom: none;"><span style="color: #004F9E;">{MAIL_FIRMA}</span></a>
         </p>
       </div>
     </div>
